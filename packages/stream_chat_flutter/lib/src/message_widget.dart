@@ -1361,7 +1361,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
     if (widget.message.text?.trim().isEmpty ?? false) return const Offstage();
     return Column(
       mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         if(!isMyMessage)
         Padding(
@@ -1372,7 +1372,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
           padding: isOnlyEmoji ? EdgeInsets.zero : widget.textPadding,
           child: widget.textBuilder != null
               ? widget.textBuilder!(context, widget.message)
-              :
+              : 
                StreamMessageText(
                   onLinkTap: widget.onLinkTap,
                   message: widget.message,
@@ -1388,48 +1388,17 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                 ),
         ),
         // TIME STAMP
-        // Text(
-        //     Jiffy(widget.message.createdAt.toLocal()).jm,
-        //     style: widget.messageTheme.createdAtStyle,
-        // ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10,bottom:10,right: 10),
+          child: Text(
+              Jiffy(widget.message.createdAt.toLocal()).jm,
+              style: widget.messageTheme.createdAtStyle,
+          ),
+        ),
         if (hasUrlAttachments && !hasQuotedMessage) _buildUrlAttachment(),
       ],
     );
-    //  return Wrap(
-    //   alignment: WrapAlignment.end,
-    //   runAlignment:WrapAlignment.spaceBetween,
-    // // crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     Padding(
-    //       padding: isOnlyEmoji ? EdgeInsets.zero : widget.textPadding,
-    //       child: widget.textBuilder != null
-    //           ? widget.textBuilder!(context, widget.message)
-    //           :
-    //            StreamMessageText(
-    //               onLinkTap: widget.onLinkTap,
-    //               message: widget.message,
-    //               onMentionTap: widget.onMentionTap,
-    //               messageTheme: isOnlyEmoji
-    //                   ? widget.messageTheme.copyWith(
-    //                       messageTextStyle:
-    //                           widget.messageTheme.messageTextStyle!.copyWith(
-    //                         fontSize: 42,
-    //                       ),
-    //                     )
-    //                   : widget.messageTheme,
-    //             ),
-    //     ),
-    //     // TIME STAMP
-    //     Padding(
-    //       padding: const EdgeInsets.only(right:10.0),
-    //       child: Text(
-    //           Jiffy(widget.message.createdAt.toLocal()).jm,
-    //           style: widget.messageTheme.createdAtStyle,
-    //       ),
-    //     ),
-    //     if (hasUrlAttachments && !hasQuotedMessage) _buildUrlAttachment(),
-    //   ],
-    // );
+    
   }
 
   Widget _buildPinnedMessage(Message message) {
@@ -1574,4 +1543,5 @@ class _ThreadReplyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+ 
 }
