@@ -1361,19 +1361,15 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
     if (widget.message.text?.trim().isEmpty ?? false) return const Offstage();
     return Column(
       mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.end,
+    crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(!isMyMessage)
-        Padding(
-          padding:const EdgeInsets.only(left: 10,top: 10,right: 10),
-          child: _buildUsername(usernameKey),
-        ),
+        if(!isMyMessage && !hasNonUrlAttachments)
+        _buildUsername(usernameKey),
         Padding(
           padding: isOnlyEmoji ? EdgeInsets.zero : widget.textPadding,
           child: widget.textBuilder != null
               ? widget.textBuilder!(context, widget.message)
-              : 
-               StreamMessageText(
+              : StreamMessageText(
                   onLinkTap: widget.onLinkTap,
                   message: widget.message,
                   onMentionTap: widget.onMentionTap,
@@ -1386,15 +1382,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                         )
                       : widget.messageTheme,
                 ),
-        ),
-        // TIME STAMP
-        Padding(
-          padding: const EdgeInsets.only(left: 10,bottom:10,right: 10),
-          child: Text(
-              Jiffy(widget.message.createdAt.toLocal()).jm,
-              style: widget.messageTheme.createdAtStyle,
-          ),
-        ),
+        ),      
         if (hasUrlAttachments && !hasQuotedMessage) _buildUrlAttachment(),
       ],
     );

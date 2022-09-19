@@ -109,11 +109,14 @@ class ChannelPage extends StatelessWidget {
                                   return defaultMessage.copyWith(
                                    showTimestamp: false,
                                   usernameBuilder: (context, message) {
-                                    return Text(
-                                      message.user!.name,
-                                      style: const TextStyle(
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold,
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        message.user!.name,
+                                        style: const TextStyle(
+                                          color: Colors.green,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     );
                                   
