@@ -108,7 +108,8 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailSize = const Size(400, 400),
     this.imageAttachmentThumbnailResizeType = 'crop',
     this.imageAttachmentThumbnailCropType = 'center',
-  }) : attachmentBuilders = {
+  }) : 
+  attachmentBuilders = {
           'image': (context, message, attachments) {
             final border = RoundedRectangleBorder(
               borderRadius: attachmentBorderRadiusGeometry ?? BorderRadius.zero,
@@ -763,6 +764,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                                                           widget.messageTheme,
                                                     ),
                                                   )
+                                                   // ACTUAL MESSAGE BUBBLE
                                                 : Card(
                                                     elevation: 0,
                                                     margin:
@@ -1352,10 +1354,15 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
       );
 
   Widget _buildTextBubble() {
+    final isMyMessage = widget.message.user?.id == _streamChat.currentUser?.id;
+      const usernameKey = Key('username');
     if (widget.message.text?.trim().isEmpty ?? false) return const Offstage();
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if(!isMyMessage && !hasNonUrlAttachments)
+        _buildUsername(usernameKey),
         Padding(
           padding: isOnlyEmoji ? EdgeInsets.zero : widget.textPadding,
           child: widget.textBuilder != null
@@ -1373,10 +1380,11 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                         )
                       : widget.messageTheme,
                 ),
-        ),
+        ),      
         if (hasUrlAttachments && !hasQuotedMessage) _buildUrlAttachment(),
       ],
     );
+    
   }
 
   Widget _buildPinnedMessage(Message message) {
@@ -1521,4 +1529,5 @@ class _ThreadReplyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+ 
 }
