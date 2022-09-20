@@ -1,4 +1,8 @@
-## Upcoming
+## 4.6.0
+
+✅ Added
+
+- Added `StreamChatClient.getCallToken` and `StreamChatClient.createCall` methods.
 
 🐞 Fixed
 

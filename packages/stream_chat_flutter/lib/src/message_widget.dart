@@ -764,10 +764,8 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                                                           widget.messageTheme,
                                                     ),
                                                   )
-                                                : 
-                                                // ACTUAL MESSAGE BUBBLE
-                                                Card(
-                                                    clipBehavior: Clip.hardEdge,
+                                                   // ACTUAL MESSAGE BUBBLE
+                                                : Card(
                                                     elevation: 0,
                                                     margin:
                                                         EdgeInsets.symmetric(
