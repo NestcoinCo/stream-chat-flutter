@@ -121,14 +121,14 @@ class StreamVideoAttachment extends StreamAttachmentWidget {
                 ),
               ),
             ),
-            if (attachment.title != null)
-              Material(
-                color: messageTheme.messageBackgroundColor,
-                child: StreamAttachmentTitle(
-                  messageTheme: messageTheme,
-                  attachment: attachment,
-                ),
-              ),
+            // if (attachment.title != null)
+            //   Material(
+            //     color: messageTheme.messageBackgroundColor,
+            //     child: StreamAttachmentTitle(
+            //       messageTheme: messageTheme,
+            //       attachment: attachment,
+            //     ),
+            //   ),
           ],
         ),
       );
