@@ -147,6 +147,7 @@ class StreamImageAttachment extends StreamAttachmentWidget {
                                         message.attachments.indexOf(attachment),
                                     userName: message.user?.name,
                                     onShowMessage: onShowMessage,
+                                    showShareButtonIcon: showSaveMediaButton,
                                     attachmentActionsModalBuilder: (
                                       context,
                                       attachment,

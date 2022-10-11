@@ -160,6 +160,7 @@ class StreamImageGroup extends StatelessWidget {
             startIndex: index,
             userName: message.user?.name,
             onShowMessage: onShowMessage,
+            showShareButtonIcon: showSaveMediaButton,
           ),
         ),
       ),

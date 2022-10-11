@@ -96,6 +96,7 @@ class StreamVideoAttachment extends StreamAttachmentWidget {
                                   message.attachments.indexOf(attachment),
                               userName: message.user?.name,
                               onShowMessage: onShowMessage,
+                              showShareButtonIcon: showSaveMediaButton,
                               attachmentActionsModalBuilder:
                                   (context, attachment, defaultActionsModal) =>
                                       defaultActionsModal.copyWith(
