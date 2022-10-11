@@ -39,6 +39,7 @@ class StreamFullScreenMedia extends StatefulWidget {
     this.onShowMessage,
     this.attachmentActionsModalBuilder,
     this.autoplayVideos = false,
+    this.showShareButtonIcon = false,
   }) : userName = userName ?? '';
 
   /// The url of the image
@@ -60,6 +61,9 @@ class StreamFullScreenMedia extends StatefulWidget {
 
   /// Auto-play videos when page is opened
   final bool autoplayVideos;
+
+  /// Display share button icon
+  final bool showShareButtonIcon;
 
   @override
   _StreamFullScreenMediaState createState() => _StreamFullScreenMediaState();
@@ -176,6 +180,7 @@ class _StreamFullScreenMediaState extends State<StreamFullScreenMedia> {
                         child: StreamGalleryFooter(
                           currentPage: currentPage,
                           totalPages: widget.mediaAttachmentPackages.length,
+                          showShareButtonIcon: widget.showShareButtonIcon,
                           mediaAttachmentPackages:
                               widget.mediaAttachmentPackages,
                           mediaSelectedCallBack: (val) {

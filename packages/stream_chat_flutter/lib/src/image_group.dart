@@ -22,6 +22,7 @@ class StreamImageGroup extends StatelessWidget {
     this.imageThumbnailSize = const Size(400, 400),
     this.imageThumbnailResizeType = 'crop',
     this.imageThumbnailCropType = 'center',
+    this.showSaveMediaButton = false,
   });
 
   /// List of attachments to show
@@ -57,6 +58,9 @@ class StreamImageGroup extends StatelessWidget {
   ///
   /// Defaults to [center]
   final String /*center|top|bottom|left|right*/ imageThumbnailCropType;
+
+  /// Display save media button
+  final bool showSaveMediaButton;
 
   @override
   Widget build(BuildContext context) => ConstrainedBox(
@@ -156,6 +160,7 @@ class StreamImageGroup extends StatelessWidget {
             startIndex: index,
             userName: message.user?.name,
             onShowMessage: onShowMessage,
+            showShareButtonIcon: showSaveMediaButton,
           ),
         ),
       ),
@@ -172,5 +177,6 @@ class StreamImageGroup extends StatelessWidget {
         imageThumbnailSize: imageThumbnailSize,
         imageThumbnailResizeType: imageThumbnailResizeType,
         imageThumbnailCropType: imageThumbnailCropType,
+        showSaveMediaButton: showSaveMediaButton,
       );
 }

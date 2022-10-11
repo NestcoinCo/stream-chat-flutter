@@ -21,6 +21,7 @@ class StreamQuotedMessageWidget extends StatelessWidget {
     super.key,
     required this.message,
     required this.messageTheme,
+    this.showSaveMediaButton = false,
     this.reverse = false,
     this.showBorder = false,
     this.textLimit = 170,
@@ -53,6 +54,9 @@ class StreamQuotedMessageWidget extends StatelessWidget {
 
   /// Callback for tap on widget
   final GestureTapCallback? onTap;
+
+  /// Display save media button
+  final bool showSaveMediaButton;
 
   bool get _hasAttachments => message.attachments.isNotEmpty;
 
@@ -207,6 +211,7 @@ class StreamQuotedMessageWidget extends StatelessWidget {
                   message: message,
                   messageTheme: messageTheme,
                   size: const Size(32, 32),
+                  showSaveMediaButton: showSaveMediaButton,
                 ),
             'video': (_, attachment) => _VideoAttachmentThumbnail(
                   key: ValueKey(attachment.assetUrl),

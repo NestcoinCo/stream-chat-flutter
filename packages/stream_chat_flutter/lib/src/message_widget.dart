@@ -84,6 +84,7 @@ class StreamMessageWidget extends StatefulWidget {
     this.showFlagButton = true,
     this.showPinButton = true,
     this.showPinHighlight = true,
+    this.showSaveMediaButton = false,
     this.onUserAvatarTap,
     this.onLinkTap,
     this.onMessageActions,
@@ -108,8 +109,7 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailSize = const Size(400, 400),
     this.imageAttachmentThumbnailResizeType = 'crop',
     this.imageAttachmentThumbnailCropType = 'center',
-  }) : 
-  attachmentBuilders = {
+  }) : attachmentBuilders = {
           'image': (context, message, attachments) {
             final border = RoundedRectangleBorder(
               borderRadius: attachmentBorderRadiusGeometry ?? BorderRadius.zero,
@@ -138,6 +138,7 @@ class StreamMessageWidget extends StatefulWidget {
                       imageThumbnailResizeType:
                           imageAttachmentThumbnailResizeType,
                       imageThumbnailCropType: imageAttachmentThumbnailCropType,
+                      showSaveMediaButton: showSaveMediaButton,
                     ),
                   ),
                   border,
@@ -166,6 +167,7 @@ class StreamMessageWidget extends StatefulWidget {
                 imageThumbnailSize: imageAttachmentThumbnailSize,
                 imageThumbnailResizeType: imageAttachmentThumbnailResizeType,
                 imageThumbnailCropType: imageAttachmentThumbnailCropType,
+                showSaveMediaButton: showSaveMediaButton,
               ),
               border,
               reverse,
@@ -191,6 +193,7 @@ class StreamMessageWidget extends StatefulWidget {
                     message: message,
                     onShowMessage: onShowMessage,
                     onReturnAction: onReturnAction,
+                    showSaveMediaButton: showSaveMediaButton,
                     onAttachmentTap: onAttachmentTap != null
                         ? () {
                             onAttachmentTap(message, attachment);
@@ -222,6 +225,7 @@ class StreamMessageWidget extends StatefulWidget {
                     ),
                     onShowMessage: onShowMessage,
                     onReturnAction: onReturnAction,
+                    showSaveMediaButton: showSaveMediaButton,
                     onAttachmentTap: onAttachmentTap != null
                         ? () {
                             onAttachmentTap(message, attachment);
@@ -256,6 +260,7 @@ class StreamMessageWidget extends StatefulWidget {
                           mediaQueryData.size.width * 0.8,
                           mediaQueryData.size.height * 0.3,
                         ),
+                        showDownloadIcon: showSaveMediaButton,
                         onAttachmentTap: onAttachmentTap != null
                             ? () {
                                 onAttachmentTap(message, attachment);
@@ -403,6 +408,9 @@ class StreamMessageWidget extends StatefulWidget {
   /// Display Pin Highlight
   final bool showPinHighlight;
 
+  /// Display save media button
+  final bool showSaveMediaButton;
+
   /// Builder for respective attachment types
   final Map<String, AttachmentBuilder> attachmentBuilders;
 
@@ -486,6 +494,7 @@ class StreamMessageWidget extends StatefulWidget {
     bool? showFlagButton,
     bool? showPinButton,
     bool? showPinHighlight,
+    bool? showSaveMediaButton,
     Map<String, AttachmentBuilder>? customAttachmentBuilders,
     bool? translateUserAvatar,
     OnQuotedMessageTap? onQuotedMessageTap,
@@ -556,6 +565,7 @@ class StreamMessageWidget extends StatefulWidget {
         customActions: customActions ?? this.customActions,
         onAttachmentTap: onAttachmentTap ?? this.onAttachmentTap,
         userAvatarBuilder: userAvatarBuilder ?? this.userAvatarBuilder,
+        showSaveMediaButton: showSaveMediaButton ?? this.showSaveMediaButton,
         imageAttachmentThumbnailSize:
             imageAttachmentThumbnailSize ?? this.imageAttachmentThumbnailSize,
         imageAttachmentThumbnailResizeType:
@@ -764,7 +774,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                                                           widget.messageTheme,
                                                     ),
                                                   )
-                                                   // ACTUAL MESSAGE BUBBLE
+                                                // ACTUAL MESSAGE BUBBLE
                                                 : Card(
                                                     elevation: 0,
                                                     margin:
@@ -1355,14 +1365,13 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
 
   Widget _buildTextBubble() {
     final isMyMessage = widget.message.user?.id == _streamChat.currentUser?.id;
-      const usernameKey = Key('username');
+    const usernameKey = Key('username');
     if (widget.message.text?.trim().isEmpty ?? false) return const Offstage();
     return Column(
       mainAxisSize: MainAxisSize.min,
-    crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(!isMyMessage && !hasNonUrlAttachments)
-        _buildUsername(usernameKey),
+        if (!isMyMessage && !hasNonUrlAttachments) _buildUsername(usernameKey),
         Padding(
           padding: isOnlyEmoji ? EdgeInsets.zero : widget.textPadding,
           child: widget.textBuilder != null
@@ -1380,11 +1389,10 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                         )
                       : widget.messageTheme,
                 ),
-        ),      
+        ),
         if (hasUrlAttachments && !hasQuotedMessage) _buildUrlAttachment(),
       ],
     );
-    
   }
 
   Widget _buildPinnedMessage(Message message) {
@@ -1529,5 +1537,4 @@ class _ThreadReplyPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
- 
 }

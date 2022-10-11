@@ -27,6 +27,7 @@ class StreamFileAttachment extends StreamAttachmentWidget {
     this.title,
     this.trailing,
     this.onAttachmentTap,
+    this.showDownloadIcon = false,
   });
 
   /// Title for attachment
@@ -43,6 +44,9 @@ class StreamFileAttachment extends StreamAttachmentWidget {
 
   /// Check if attachment is an image
   bool get isImageAttachment => attachment.title?.mimeType?.type == 'image';
+
+  /// Display download icon
+  final bool showDownloadIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -269,7 +273,7 @@ class StreamFileAttachment extends StreamAttachmentWidget {
 
     return Material(
       type: MaterialType.transparency,
-      child: trailingWidget,
+      child: showDownloadIcon ? trailingWidget : const SizedBox(),
     );
   }
 

@@ -26,6 +26,7 @@ class StreamGalleryFooter extends StatefulWidget
     this.onImageTap,
     this.currentPage = 0,
     this.totalPages = 0,
+    this.showShareButtonIcon = false,
     required this.mediaAttachmentPackages,
     this.mediaSelectedCallBack,
     this.backgroundColor,
@@ -56,6 +57,9 @@ class StreamGalleryFooter extends StatefulWidget
   /// The background color of this [StreamGalleryFooter].
   final Color? backgroundColor;
 
+  /// Display share button icon
+  final bool showShareButtonIcon;
+
   @override
   _StreamGalleryFooterState createState() => _StreamGalleryFooterState();
 
@@ -83,7 +87,7 @@ class _StreamGalleryFooterState extends State<StreamGalleryFooter> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (!showShareButton)
+              if (!widget.showShareButtonIcon || !showShareButton)
                 Container(
                   width: 48,
                 )
