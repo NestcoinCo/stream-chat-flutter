@@ -101,35 +101,34 @@ class ChannelPage extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: const StreamChannelHeader(),
         body: Column(
-          children:  <Widget>[
+          children: <Widget>[
             Expanded(
               child: StreamMessageListView(
-                  messageBuilder: (context, details, messages,
-                                    defaultMessage) {
-                                  return defaultMessage.copyWith(
-                                   showTimestamp: false,
-                                  usernameBuilder: (context, message) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        message.user!.name,
-                                        style: const TextStyle(
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    );
-                                  
-                                  },
-                                    textPadding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 8,
-    )
-                                  );
-                                },
+                messageBuilder: (context, details, messages, defaultMessage) {
+                  return defaultMessage.copyWith(
+                    showTimestamp: false,
+                    showSaveMediaButton: true,
+                    usernameBuilder: (context, message) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          message.user!.name,
+                          style: const TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    },
+                    textPadding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                  );
+                },
               ),
             ),
-            StreamMessageInput(attachmentLimit: 3),
+            const StreamMessageInput(attachmentLimit: 3),
           ],
         ),
       );

@@ -22,6 +22,7 @@ class StreamVideoAttachment extends StreamAttachmentWidget {
     this.onShowMessage,
     this.onReturnAction,
     this.onAttachmentTap,
+    this.showSaveMediaButton = false,
   });
 
   /// [StreamMessageThemeData] for showing title
@@ -35,6 +36,9 @@ class StreamVideoAttachment extends StreamAttachmentWidget {
 
   /// Callback when attachment is tapped
   final VoidCallback? onAttachmentTap;
+
+  /// Display save media button
+  final bool showSaveMediaButton;
 
   @override
   Widget build(BuildContext context) => source.when(
@@ -92,6 +96,11 @@ class StreamVideoAttachment extends StreamAttachmentWidget {
                                   message.attachments.indexOf(attachment),
                               userName: message.user?.name,
                               onShowMessage: onShowMessage,
+                              attachmentActionsModalBuilder:
+                                  (context, attachment, defaultActionsModal) =>
+                                      defaultActionsModal.copyWith(
+                                showSave: showSaveMediaButton,
+                              ),
                             ),
                           ),
                         ),

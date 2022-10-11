@@ -28,6 +28,7 @@ class StreamImageAttachment extends StreamAttachmentWidget {
     this.imageThumbnailSize = const Size(400, 400),
     this.imageThumbnailResizeType = 'crop',
     this.imageThumbnailCropType = 'center',
+    this.showSaveMediaButton = false,
   });
 
   /// [StreamMessageThemeData] for showing image title
@@ -47,6 +48,9 @@ class StreamImageAttachment extends StreamAttachmentWidget {
 
   /// Size of the attachment image thumbnail.
   final Size imageThumbnailSize;
+
+  /// Display save media button
+  final bool showSaveMediaButton;
 
   /// Resize type of the image attachment thumbnail.
   ///
@@ -143,6 +147,14 @@ class StreamImageAttachment extends StreamAttachmentWidget {
                                         message.attachments.indexOf(attachment),
                                     userName: message.user?.name,
                                     onShowMessage: onShowMessage,
+                                    attachmentActionsModalBuilder: (
+                                      context,
+                                      attachment,
+                                      defaultActionsModal,
+                                    ) =>
+                                        defaultActionsModal.copyWith(
+                                      showSave: showSaveMediaButton,
+                                    ),
                                   ),
                                 );
                               },

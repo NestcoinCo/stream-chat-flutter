@@ -22,6 +22,7 @@ class StreamGiphyAttachment extends StreamAttachmentWidget {
     this.onShowMessage,
     this.onReturnAction,
     this.onAttachmentTap,
+    this.showSaveMediaButton = false,
   });
 
   /// Callback when show message is tapped
@@ -32,6 +33,9 @@ class StreamGiphyAttachment extends StreamAttachmentWidget {
 
   /// Callback when attachment is tapped
   final VoidCallback? onAttachmentTap;
+
+  /// Display save media button
+  final bool showSaveMediaButton;
 
   @override
   Widget build(BuildContext context) {
@@ -249,6 +253,12 @@ class StreamGiphyAttachment extends StreamAttachmentWidget {
               startIndex: message.attachments.indexOf(attachment),
               userName: message.user?.name,
               onShowMessage: onShowMessage,
+              attachmentActionsModalBuilder: (
+                context,
+                attachment,
+                defaultActionsModal,
+              ) =>
+                  defaultActionsModal.copyWith(showSave: showSaveMediaButton),
             ),
           );
         },
