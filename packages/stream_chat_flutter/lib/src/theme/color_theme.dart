@@ -24,6 +24,7 @@ class StreamColorTheme {
     this.highlight = const Color(0xfffbf4dd),
     this.overlay = const Color.fromRGBO(0, 0, 0, 0.2),
     this.overlayDark = const Color.fromRGBO(0, 0, 0, 0.6),
+    this.pinMessageColor = const Color(0xffF79009),
     this.bgGradient = const LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -73,6 +74,7 @@ class StreamColorTheme {
     this.accentPrimary = const Color(0xff005FFF),
     this.accentError = const Color(0xffFF3742),
     this.accentInfo = const Color(0xff20E070),
+    this.pinMessageColor = const Color(0xffF79009),
     this.borderTop = const Effect(
       sigmaX: 0,
       sigmaY: -1,
@@ -174,6 +176,9 @@ class StreamColorTheme {
   ///
   final Brightness brightness;
 
+  ///
+  final Color pinMessageColor;
+
   /// Copy with theme
   StreamColorTheme copyWith({
     Brightness brightness = Brightness.light,
@@ -196,6 +201,7 @@ class StreamColorTheme {
     Color? overlay,
     Color? overlayDark,
     Gradient? bgGradient,
+    Color? pinMessageColor,
   }) =>
       brightness == Brightness.light
           ? StreamColorTheme.light(
@@ -218,6 +224,7 @@ class StreamColorTheme {
               overlay: overlay ?? this.overlay,
               overlayDark: overlayDark ?? this.overlayDark,
               bgGradient: bgGradient ?? this.bgGradient,
+              pinMessageColor: pinMessageColor ?? this.pinMessageColor,
             )
           : StreamColorTheme.dark(
               textHighEmphasis: textHighEmphasis ?? this.textHighEmphasis,
@@ -239,6 +246,7 @@ class StreamColorTheme {
               overlay: overlay ?? this.overlay,
               overlayDark: overlayDark ?? this.overlayDark,
               bgGradient: bgGradient ?? this.bgGradient,
+              pinMessageColor: pinMessageColor ?? this.pinMessageColor,
             );
 
   /// Merge color theme
@@ -264,6 +272,7 @@ class StreamColorTheme {
       borderBottom: other.borderBottom,
       shadowIconButton: other.shadowIconButton,
       modalShadow: other.modalShadow,
+      pinMessageColor: other.pinMessageColor,
     );
   }
 }

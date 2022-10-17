@@ -972,6 +972,18 @@ class StreamSvgIcon extends StatelessWidget {
         height: size,
       );
 
+  /// [StreamSvgIcon] type
+  factory StreamSvgIcon.pinFilled({
+    double? size,
+    Color? color,
+  }) =>
+      StreamSvgIcon(
+        assetName: 'pin_filled.svg',
+        color: color,
+        width: size,
+        height: size,
+      );
+
   /// Name of icon asset
   final String? assetName;
 

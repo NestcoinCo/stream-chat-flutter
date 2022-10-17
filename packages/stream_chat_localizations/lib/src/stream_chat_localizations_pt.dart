@@ -392,4 +392,7 @@ Não é possível adicionar mais de $limit arquivos de uma vez
     }
     return '$unreadCount mensagens não lidas';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

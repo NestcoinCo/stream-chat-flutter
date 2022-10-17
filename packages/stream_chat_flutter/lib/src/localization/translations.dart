@@ -330,6 +330,9 @@ abstract class Translations {
   /// Label for "Attachment limit exceeded:
   /// it's not possible to add more than $limit attachments"
   String attachmentLimitExceedError(int limit);
+
+  /// Nestcoin preffered text for pinned message
+  String get pinnedMessage;
 }
 
 /// Default implementation of Translation strings for the stream chat widgets
@@ -723,4 +726,7 @@ Attachment limit exceeded: it's not possible to add more than $limit attachments
     }
     return '$unreadCount unread messages';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

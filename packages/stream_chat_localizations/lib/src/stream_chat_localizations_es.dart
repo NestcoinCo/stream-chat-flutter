@@ -395,4 +395,7 @@ No es posible añadir más de $limit archivos adjuntos
     }
     return '$unreadCount mensajes no leídos';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

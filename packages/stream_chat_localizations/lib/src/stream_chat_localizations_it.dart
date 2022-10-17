@@ -396,4 +396,7 @@ Attenzione: il limite massimo di $limit file è stato superato.
     }
     return '$unreadCount messaggi non letti';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }
