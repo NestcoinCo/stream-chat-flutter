@@ -374,4 +374,7 @@ class StreamChatLocalizationsKo extends GlobalStreamChatLocalizations {
     }
     return '읽지 않은 메시지 $unreadCount개';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

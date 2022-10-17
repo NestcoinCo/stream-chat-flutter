@@ -389,4 +389,7 @@ class StreamChatLocalizationsDe extends GlobalStreamChatLocalizations {
     }
     return '$unreadCount ungelesene Nachrichten';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

@@ -373,4 +373,7 @@ class StreamChatLocalizationsJa extends GlobalStreamChatLocalizations {
     }
     return '$unreadCountつの未読メッセージ';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

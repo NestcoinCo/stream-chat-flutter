@@ -394,4 +394,7 @@ Limite de pièces jointes dépassée : il n'est pas possible d'ajouter plus de $
     }
     return '$unreadCount messages non lus';
   }
+
+  @override
+  String get pinnedMessage => 'Pinned message';
 }

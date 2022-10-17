@@ -1396,23 +1396,17 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
   }
 
   Widget _buildPinnedMessage(Message message) {
-    final pinnedBy = message.pinnedBy!;
-    final currentUser = _streamChat.currentUser!;
-
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          StreamSvgIcon.pin(size: 16),
-          const SizedBox(width: 4),
+          StreamSvgIcon.pinFilled(size: 12),
+          const SizedBox(width: 5),
           Text(
-            context.translations.pinnedByUserText(
-              pinnedBy: pinnedBy,
-              currentUser: currentUser,
-            ),
+            context.translations.pinnedMessage,
             style: TextStyle(
-              color: _streamChatTheme.colorTheme.textLowEmphasis,
+              color: _streamChatTheme.colorTheme.pinMessageColor,
               fontSize: 13,
               fontWeight: FontWeight.w400,
             ),
