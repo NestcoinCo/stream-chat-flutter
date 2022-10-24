@@ -109,6 +109,7 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailSize = const Size(400, 400),
     this.imageAttachmentThumbnailResizeType = 'crop',
     this.imageAttachmentThumbnailCropType = 'center',
+    this.reactionCallback,
   }) : attachmentBuilders = {
           'image': (context, message, attachments) {
             final border = RoundedRectangleBorder(
@@ -445,6 +446,9 @@ class StreamMessageWidget extends StatefulWidget {
   /// Defaults to [center]
   final String /*center|top|bottom|left|right*/
       imageAttachmentThumbnailCropType;
+
+  /// Callback after reaction
+  final Function(Message)? reactionCallback;
 
   /// Creates a copy of [StreamMessageWidget] with
   /// specified attributes overridden.
@@ -1174,6 +1178,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                   .any((element) => element.type == 'giphy'),
           showPinButton: widget.showPinButton,
           showReactions: widget.showReactions,
+          reactionCallback: widget.reactionCallback,
         ),
       ),
     );

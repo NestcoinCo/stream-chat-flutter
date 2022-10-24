@@ -32,6 +32,7 @@ class StreamMessageActionsModal extends StatefulWidget {
     this.reverse = false,
     this.customActions = const [],
     this.onCopyTap,
+    this.reactionCallback,
   });
 
   /// Widget that shows the message
@@ -87,6 +88,9 @@ class StreamMessageActionsModal extends StatefulWidget {
 
   /// List of custom actions
   final List<StreamMessageAction> customActions;
+
+  /// Callback after reaction
+  final Function(Message)? reactionCallback;
 
   @override
   _StreamMessageActionsModalState createState() =>
@@ -168,6 +172,7 @@ class _StreamMessageActionsModalState extends State<StreamMessageActionsModal> {
                   ),
                   child: StreamReactionPicker(
                     message: widget.message,
+                    reactionCallback: widget.reactionCallback,
                   ),
                 ),
               const SizedBox(height: 8),
