@@ -109,6 +109,7 @@ class StreamMessageWidget extends StatefulWidget {
     this.imageAttachmentThumbnailSize = const Size(400, 400),
     this.imageAttachmentThumbnailResizeType = 'crop',
     this.imageAttachmentThumbnailCropType = 'center',
+    this.reactionCallback,
   }) : attachmentBuilders = {
           'image': (context, message, attachments) {
             final border = RoundedRectangleBorder(
@@ -446,6 +447,9 @@ class StreamMessageWidget extends StatefulWidget {
   final String /*center|top|bottom|left|right*/
       imageAttachmentThumbnailCropType;
 
+  /// Callback after reaction
+  final Function(Message)? reactionCallback;
+
   /// Creates a copy of [StreamMessageWidget] with
   /// specified attributes overridden.
   StreamMessageWidget copyWith({
@@ -505,6 +509,7 @@ class StreamMessageWidget extends StatefulWidget {
     Size? imageAttachmentThumbnailSize,
     String? imageAttachmentThumbnailResizeType,
     String? imageAttachmentThumbnailCropType,
+    void Function(Message)? reactionCallback,
   }) =>
       StreamMessageWidget(
         key: key ?? this.key,
@@ -573,6 +578,7 @@ class StreamMessageWidget extends StatefulWidget {
                 this.imageAttachmentThumbnailResizeType,
         imageAttachmentThumbnailCropType: imageAttachmentThumbnailCropType ??
             this.imageAttachmentThumbnailCropType,
+        reactionCallback: reactionCallback ?? this.reactionCallback,
       );
 
   @override
@@ -1174,6 +1180,7 @@ class _StreamMessageWidgetState extends State<StreamMessageWidget>
                   .any((element) => element.type == 'giphy'),
           showPinButton: widget.showPinButton,
           showReactions: widget.showReactions,
+          reactionCallback: widget.reactionCallback,
         ),
       ),
     );

@@ -21,10 +21,12 @@ class StreamReactionPicker extends StatefulWidget {
   const StreamReactionPicker({
     super.key,
     required this.message,
+    this.reactionCallback,
   });
 
   /// Message to attach the reaction to
   final Message message;
+  final Function(Message)? reactionCallback;
 
   @override
   _StreamReactionPickerState createState() => _StreamReactionPickerState();
@@ -160,6 +162,7 @@ class _StreamReactionPickerState extends State<StreamReactionPicker>
           reactionType,
           enforceUnique: true,
         );
+    widget.reactionCallback?.call(widget.message);
     pop();
   }
 
