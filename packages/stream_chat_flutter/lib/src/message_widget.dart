@@ -509,6 +509,7 @@ class StreamMessageWidget extends StatefulWidget {
     Size? imageAttachmentThumbnailSize,
     String? imageAttachmentThumbnailResizeType,
     String? imageAttachmentThumbnailCropType,
+    void Function(Message)? reactionCallback,
   }) =>
       StreamMessageWidget(
         key: key ?? this.key,
@@ -577,6 +578,7 @@ class StreamMessageWidget extends StatefulWidget {
                 this.imageAttachmentThumbnailResizeType,
         imageAttachmentThumbnailCropType: imageAttachmentThumbnailCropType ??
             this.imageAttachmentThumbnailCropType,
+        reactionCallback: reactionCallback ?? this.reactionCallback,
       );
 
   @override
